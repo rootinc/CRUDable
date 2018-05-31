@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CRUDableManagement = exports.CRUDable = undefined;
+exports.getKey = exports.defaultPlaceholderId = exports.CRUDableManagement = exports.CRUDable = undefined;
 
 var _CRUDable = require('./CRUDable');
 
@@ -17,3 +17,5 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.CRUDable = _CRUDable2.default;
 exports.CRUDableManagement = _CRUDableManagement2.default;
+exports.defaultPlaceholderId = _CRUDable.defaultPlaceholderId;
+exports.getKey = _CRUDable.getKey;

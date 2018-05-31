@@ -1,4 +1,6 @@
 import CRUDable from './CRUDable';
 import CRUDableManagement from './CRUDableManagement';
 
-export { CRUDable, CRUDableManagement };
+import {defaultPlaceholderId, getKey} from './CRUDable';
+
+export { CRUDable, CRUDableManagement, defaultPlaceholderId, getKey };
