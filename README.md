@@ -234,12 +234,7 @@ class UserManagementContainer extends Component {
       });
   }
 
-  //data structure we delete, but server we do a put with an empty role, which will "remove" it from the db
-  //really what happens is since there is no role for the user, the user won't be queried
   deleteData = (deleteData) => {
-    delete deleteData["role"];
-    deleteData["user_group_id"] = null;
-
     window.axios.delete("/api/users/" + deleteData.id, deleteData)
       .then((response) => {
         if (response.data.status === "error")
