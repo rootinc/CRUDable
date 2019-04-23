@@ -29,6 +29,22 @@ function getKey() {
   return largeKey++;
 };
 
+function getObjectAt(object, key) {
+  var obj = object;
+
+  var keys = key.split(".");
+  for (var i = 0; i < keys.length; i++) {
+    obj = obj[keys[i]];
+  }
+
+  return obj;
+}
+
+function setObjectAt(object, key, val) {
+  var obj = this.getObjectAt(object, key);
+  obj = val;
+}
+
 var CRUDable = function (_Component) {
   _inherits(CRUDable, _Component);
 
@@ -63,7 +79,7 @@ var CRUDable = function (_Component) {
 
       var data = Object.assign({}, _this.props.data);
 
-      data[key] = e.target.value;
+      setObjectAt(data, key, e.target.value);
 
       _this.props.updateObject(data, updateToServer);
     };
@@ -77,7 +93,7 @@ var CRUDable = function (_Component) {
       if (_this.props.data.id < defaultPlaceholderId) {
         //only go to readonly if we have a legit id
         //regardless, if we still stay in writeonly mode, need to send the data up to the server
-        _this.handleChange({ target: { value: _this.props.data[key] } }, key, true);
+        _this.handleChange({ target: { value: getObjectAt(_this.props.data, key) } }, key, true);
 
         _this.inputTimeout = setTimeout(function () {
           _this.switchToReadOnly();
