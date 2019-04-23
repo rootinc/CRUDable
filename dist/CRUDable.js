@@ -41,8 +41,18 @@ function getObjectAt(object, key) {
 }
 
 function setObjectAt(object, key, val) {
-  var obj = getObjectAt(object, key);
-  obj = val;
+  var obj = object;
+
+  var keys = key.split(".");
+
+  var myKey = keys[0];
+
+  for (var i = 1; i < keys.length; i++) {
+    obj = obj[keys[i - 1]];
+    myKey = keys[i - 1];
+  }
+
+  obj[myKey] = val;
 }
 
 var CRUDable = function (_Component) {
