@@ -49,7 +49,7 @@ function setObjectAt(object, key, val) {
 
   for (var i = 1; i < keys.length; i++) {
     obj = obj[keys[i - 1]];
-    myKey = keys[i - 1];
+    myKey = keys[i];
   }
 
   obj[myKey] = val;
