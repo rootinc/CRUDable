@@ -21,7 +21,7 @@ function getObjectAt(object, key) {
 }
 
 function setObjectAt(object, key, val) {
-  let obj = this.getObjectAt(object, key);
+  let obj = getObjectAt(object, key);
   obj = val;
 }
 

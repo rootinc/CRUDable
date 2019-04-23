@@ -41,7 +41,7 @@ function getObjectAt(object, key) {
 }
 
 function setObjectAt(object, key, val) {
-  var obj = this.getObjectAt(object, key);
+  var obj = getObjectAt(object, key);
   obj = val;
 }
 
