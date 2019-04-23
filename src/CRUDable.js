@@ -21,8 +21,19 @@ function getObjectAt(object, key) {
 }
 
 function setObjectAt(object, key, val) {
-  let obj = getObjectAt(object, key);
-  obj = val;
+  let obj = object;
+
+  const keys = key.split(".");
+
+  let myKey = keys[0];
+
+  for (let i=1; i<keys.length; i++)
+  {
+    obj = obj[keys[i - 1]];
+    myKey = keys[i - 1];
+  }
+
+  obj[myKey] = val;
 }
 
 export default class CRUDable extends Component {
