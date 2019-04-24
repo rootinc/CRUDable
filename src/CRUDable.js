@@ -4,9 +4,37 @@ export const defaultPlaceholderId = 1000000000;
 
 let largeKey = defaultPlaceholderId;
 
-export function getKey(){
+export function getKey() {
   return largeKey ++;
 };
+
+function getObjectAt(object, key) {
+  let obj = object;
+
+  const keys = key.split(".");
+  for (let i=0; i<keys.length; i++)
+  {
+    obj = obj[keys[i]];
+  }
+
+  return obj;
+}
+
+function setObjectAt(object, key, val) {
+  let obj = object;
+
+  const keys = key.split(".");
+
+  let myKey = keys[0];
+
+  for (let i=1; i<keys.length; i++)
+  {
+    obj = obj[keys[i - 1]];
+    myKey = keys[i];
+  }
+
+  obj[myKey] = val;
+}
 
 export default class CRUDable extends Component {
   constructor(props) {
@@ -40,7 +68,7 @@ export default class CRUDable extends Component {
 
     let data = Object.assign({}, this.props.data);
 
-    data[key] = e.target.value;
+    setObjectAt(data, key, e.target.value);
 
     this.props.updateObject(data, updateToServer);
   }
@@ -53,7 +81,7 @@ export default class CRUDable extends Component {
   handleBlur = (e, key) => {
     if (this.props.data.id < defaultPlaceholderId) { //only go to readonly if we have a legit id
       //regardless, if we still stay in writeonly mode, need to send the data up to the server
-      this.handleChange({target: {value: this.props.data[key]}}, key, true);
+      this.handleChange({target: {value: getObjectAt(this.props.data, key)}}, key, true);
 
       this.inputTimeout = setTimeout(() => {
         this.switchToReadOnly();
