@@ -89,7 +89,13 @@ var CRUDable = function (_Component) {
 
       var data = Object.assign({}, _this.props.data);
 
-      setObjectAt(data, key, e.target.value);
+      var value = e.target.value;
+      if (value === 'true' || value === 'yes') {
+        value = true;
+      } else if (value === 'false' || value === 'no') {
+        value = false;
+      }
+      setObjectAt(data, key, value);
 
       _this.props.updateObject(data, updateToServer);
     };

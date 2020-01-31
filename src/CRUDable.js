@@ -68,7 +68,16 @@ export default class CRUDable extends Component {
 
     let data = Object.assign({}, this.props.data);
 
-    setObjectAt(data, key, e.target.value);
+    let value = e.target.value;
+    if (value === 'true' || value === 'yes')
+    {
+      value = true;
+    }
+    else if (value === 'false' || value === 'no')
+    {
+      value = false;
+    }
+    setObjectAt(data, key, value);
 
     this.props.updateObject(data, updateToServer);
   }
