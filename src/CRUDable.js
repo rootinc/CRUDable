@@ -145,6 +145,10 @@ export default class CRUDable extends Component {
       <button
         onFocus={this.handleFocus}
         onClick={this.handleDelete}
+        onMouseDown={(e) => {
+          //fix blur event firing before the delete
+          e.preventDefault();
+        }}
       >
         {text}
       </button>

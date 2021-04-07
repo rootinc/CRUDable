@@ -173,7 +173,11 @@ var CRUDable = function (_Component) {
         "button",
         {
           onFocus: _this.handleFocus,
-          onClick: _this.handleDelete
+          onClick: _this.handleDelete,
+          onMouseDown: function onMouseDown(e) {
+            //fix blur event firing before the delete
+            e.preventDefault();
+          }
         },
         text
       );
