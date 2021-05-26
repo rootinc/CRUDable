@@ -4,7 +4,7 @@ Provides CRUDable interfaces with React.
 
 ## Installation
 
-1. `yarn github:rootinc/CRUDable`
+1. `npm i github:rootinc/CRUDable`
 2. :shipit:
 
 ## Usage
